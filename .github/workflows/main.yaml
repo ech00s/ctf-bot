@@ -53,12 +53,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: manifest
-        uses: docker/build-push-action@v5
-        with:
-          push: true 
-          tags: ech00s/ctf-bot:alpha 
-          pull: true
-          images: |
-            ech00s/ctf-bot:alpha-amd64
-            ech00s/ctf-bot:alpha-arm64
-          platforms: linux/amd64,linux/arm64
+        run: docker buildx imagetools create -t ech00s/ctf-bot:alpha ech00s/ctf-bot:alpha-amd64 ech00s/ctf-bot:alpha-arm64
