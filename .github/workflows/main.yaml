@@ -36,6 +36,7 @@ jobs:
           push: true
           tags: ech00s/ctf-bot:alpha-${{matrix.arch}}
           platforms: linux/${{matrix.arch}}
+
   manifest:
     needs: build
     runs-on: 
@@ -56,6 +57,7 @@ jobs:
         with:
           push: true 
           tags: ech00s/ctf-bot:alpha 
+          pull: true
           images: |
             ech00s/ctf-bot:alpha-amd64
             ech00s/ctf-bot:alpha-arm64
