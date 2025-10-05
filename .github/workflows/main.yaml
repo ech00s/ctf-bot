@@ -1,17 +1,23 @@
 on:
   push:
     branches: ["main"]
+    
 jobs:
   main:
-    runs-on: self-hosted
+    strategy:
+      matrix:
+        arch: [amd64,arm64]
+        include:
+          - arch: amd64
+            runner_label: x86_64
+          - arch: arm64
+            runner_label: arm64
+
+    runs-on: [self-hosted, ${{matrix.runner_label}}]
+
     steps:
       - name: checkout
         uses: actions/checkout@v4
-
-      - name: qemu setup
-        uses: docker/setup-qemu-action@v3
-        with:
-          platforms: all
 
       - name: buildx setup
         uses: docker/setup-buildx-action@v3
@@ -28,4 +34,4 @@ jobs:
           context: .
           push: true
           tags: soullessblob/ctf-bot:alpha
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/${{matrix.arch}}
