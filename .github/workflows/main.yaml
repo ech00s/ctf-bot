@@ -37,6 +37,7 @@ jobs:
           tags: ech00s/ctf-bot:alpha-${{matrix.arch}}
           platforms: linux/${{matrix.arch}}
   manifest:
+    needs: build
     runs-on: 
       - self-hosted
 
