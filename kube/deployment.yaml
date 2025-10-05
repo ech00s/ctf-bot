@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ctf-bot
+  name: ctf-bot-deployment
+  labels:
+    app: ctf-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ctf-bot
+  template:
+    metadata:
+      labels:
+        app: ctf-bot
+    spec:
+      serviceAccountName: ctf-bot-deployer
+      containers:
+      - name: ctf-bot
+        imagePullPolicy: Always
+        image: soullessblob/ctf-bot:alpha
+        env:
+          - name: DISCORD_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: ctf-bot-token
+                key: token

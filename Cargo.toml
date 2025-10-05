@@ -1,0 +1,10 @@
+[package]
+name = "ctf-bot"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+kube = { version = "2.0.1", default-features = false,features = ["runtime", "rustls-tls","ws","client","ring"] }
+k8s-openapi = { version = "0.26.0", features = ["latest"] }
+tokio = { version = "1", features = ["rt-multi-thread","time"] }
+poise = "0.6.1"

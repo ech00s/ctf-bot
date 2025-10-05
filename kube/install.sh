@@ -1,0 +1,1 @@
+kubectl apply -f ns.yaml -f rbac.yaml -f secrets.yaml -f deployment.yaml

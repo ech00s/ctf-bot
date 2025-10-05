@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: ctf-bot
+  name: ctf-bot-deployer
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: ctf-jobs
+  name: full-access
+rules:
+- apiGroups: ["", "apps", "batch", "networking.k8s.io"]
+  resources: ["*"]
+  verbs: ["*"]
+- apiGroups: [""]
+  resources: ["pods/exec","pods/attach","pods/portforward"]
+  verbs: ["create"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: full-access-binding
+  namespace: ctf-jobs
+subjects:
+  - kind: ServiceAccount
+    name: ctf-bot-deployer
+    namespace: ctf-bot
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: full-access
