@@ -19,7 +19,7 @@ spec:
       containers:
       - name: ctf-bot
         imagePullPolicy: Always
-        image: soullessblob/ctf-bot:alpha
+        image: kingston-hall/ctf-bot:alpha
         env:
           - name: DISCORD_TOKEN
             valueFrom:
