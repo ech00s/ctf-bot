@@ -21,4 +21,4 @@ ARG TARGETARCH
 ARG AARCH="${TARGETARCH/amd64/x86_64}"
 ARG RUST_TARGET="${AARCH/arm64/aarch64}-unknown-linux-musl"
 COPY --from=build /app/target/${RUST_TARGET}/release/ctf-bot /usr/local/bin/ctf-bot
-ENTRYPOINT ["/usr/local/b<in/ctf-bot"]
+ENTRYPOINT ["/usr/local/bin/ctf-bot"]
