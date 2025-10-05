@@ -1,7 +1,7 @@
 on:
   push:
     branches: ["main"]
-    
+
 jobs:
   main:
     strategy:
@@ -12,8 +12,9 @@ jobs:
             runner_label: x86_64
           - arch: arm64
             runner_label: arm64
-
-    runs-on: [self-hosted, ${{matrix.runner_label}}]
+    runs-on: 
+      - self-hosted
+      - ${{matrix.runner_label}}
 
     steps:
       - name: checkout
