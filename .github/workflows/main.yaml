@@ -9,7 +9,7 @@ jobs:
         arch: [amd64,arm64]
         include:
           - arch: amd64
-            runner_label: x86_64
+            runner_label: amd64
           - arch: arm64
             runner_label: arm64
     runs-on: 
